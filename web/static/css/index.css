@@ -162,3 +162,14 @@ nav {
   height: 100%;
   background-color: rgba(0,0,0,0.7);
 }
+
+.select-carousel{
+  text-align: center;
+  width: 100%;
+  margin-left: 20%;
+}
+
+.main-image{
+  width: 20%;
+  float: left;
+}
