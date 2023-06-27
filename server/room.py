@@ -1,5 +1,3 @@
-from flask import Flask, render_template
-
-@app.route('/')
-def home():
-    return flask.render_template('home.html')
+class Room:
+    def __init__(self):
+        self.users = set()
