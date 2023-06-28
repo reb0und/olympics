@@ -49,16 +49,40 @@ async function shrink(){
 }
 
 async function newimg(){
+    let rootURL = window.location.href;
+    rootURL = rootURL.replace("/web",'');
+
+    rootURL = rootURL.replace("/static/index.html",'');
+
     if (carousel == 0){
         tmg.src = "../assets/images/badminton.png";
+        gamename.textContent = "Badminton";
+        gamedes.textContent = "Play 1v1 Badminton!";
+        gameselect.onclick = function() {window.location = rootURL+"/game/badminton/src/badminton.html";};
+
     } else if (carousel == 1){
         tmg.src = "../assets/images/tennis.png";
+        gamename.textContent = "Tennis";
+        gamedes.textContent = "Play 1v1 Tennis!";
+        gameselect.onclick = function() {window.location = rootURL+"/game/tennis/src/tennis.html";};
+
     } else if (carousel == 2){
         tmg.src = "../assets/images/table.png";
+        gamename.textContent = "Table Tennis";
+        gamedes.textContent = "Play 1v1 Table Tennis!";
+        gameselect.onclick = function() {window.location = rootURL+"/game/tableTennis/src/tableTennis.html";};
+
     } else if (carousel == 3){
         tmg.src = "../assets/images/soccer.png";
+        gamename.textContent = "Soccer";
+        gamedes.textContent = "Play 1 player Soccer!";
+        gameselect.onclick = function() {window.location = rootURL+"/game/soccer/src/soccer.html";};
+
     } else if (carousel == 4){
         tmg.src = "../assets/images/boxing.png";
+        gamename.textContent = "Boxing";
+        gamedes.textContent = "Play 1v1 Boxing!";
+        gameselect.onclick = function() {window.location = rootURL+"/game/boxing/src/boxing.html";};
     }
 }
 
