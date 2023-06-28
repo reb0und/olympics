@@ -39,7 +39,6 @@ courtside.style.top = cheight+'px';
 let player1x = 100;
 let player1y = 50;
 let p1angle = -90;
-let p2angle = 90;
 let hittime = null;
 let hitside = "";
 
@@ -107,15 +106,11 @@ function render(){
         if (ballx < 50 && bdx < 0){
             if (bally-100*ballwidth/cheight < player2y){
                 player2y -= 0.2;
-                player2.style.transform = "rotate(60deg)";
-                p2angle = 60;
             }
 
 
             if (bally-100*ballwidth/cheight > player2y){
                 player2y += 0.2;
-                player2.style.transform = "rotate(120deg)";
-                p2angle = 120;
             }
         }
 
@@ -163,7 +158,7 @@ function render(){
         // console.log((player1y)-(bally)+cheight/70, cheight/80);
 
         // reflecting the ball
-        if (ballx > 103){
+        if (ballx > 100){
 
             if (bally > 100 || bally < 0){
                 if(confirm("Ball out for computer")){
@@ -174,7 +169,7 @@ function render(){
             let swingtime = (new Date()-hittime)/1000; // this is in seconds now
 
             console.log(swingtime);
-            if (swingtime > 2){
+            if (swingtime > 1){
                 if (confirm("You missed!")){
                     location.reload();
                 }
