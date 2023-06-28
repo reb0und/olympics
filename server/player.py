@@ -5,3 +5,5 @@ class Player:
         self.id: UUID = uuid4()
         self.name: str = name
         self.points: int = 0
+
+            
