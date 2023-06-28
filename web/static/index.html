@@ -37,22 +37,25 @@
       <h2 id='head' style="font-size: 50px; color: black; margin-top: 40px; margin-bottom: 10px;">Select a game</h2>
      
       <div class="select-carousel">
-        <img src="../assets/images/arrow-left.png" style="float: left;" width="5%">
+        <img class="arrow" src="../assets/images/arrow-left.png" width="5%" onclick="movecarousel('left')">
         <div class="main-image">
-          <img id="m-img" src="../assets/images/tennis.png" height="170px">
+          <img id="m-img" style="object-fit: cover;" src="../assets/images/tennis.png" width="170px">
         </div>
-        <img src="../assets/images/arrow-right.png" style="float: left;" width="5%">
+        <img class="arrow" src="../assets/images/arrow-right.png" width="5%" onclick="movecarousel('right')">
       </div>
      
-      <img src="https://png.pngtree.com/png-vector/20230407/ourmid/pngtree-badminton-line-icon-vector-png-image_6693236.png" height="170px">
+      <!-- <img src="https://png.pngtree.com/png-vector/20230407/ourmid/pngtree-badminton-line-icon-vector-png-image_6693236.png" height="170px">
       <img src="../assets/images/tennis.png" height="170px">
       <img src="../assets/images/table.png" height="177px">
       <img src="../assets/images/soccer.png" style="padding-left: 50px;" height="170px">
-      <img src="../assets/images/boxing.png" style="padding-left: 50px;" height="170px">
-
+      <img src="../assets/images/boxing.png" style="padding-left: 50px;" height="170px"> -->
     </div>
 
-
+    <div class="fullwidth" style="margin-top: 190px;">
+      <h3 id="gamename" class='gamename'>Select a game</h3>
+      <h4 id="gamedes" class='gamedes'>This game is about playing</h4>
+      <button id="gameselect" class="gamebutton">Play</button>
+    </div>
 
     <div id="backdrop" class="backdrop">
     <div id="askdialogue" class="askdialogue">
@@ -78,6 +81,7 @@
 
     </div>
 
+    <script src="../src/html-controller.js"></script>
     <script src="../src/index.js"></script>
 
   </body>

@@ -13,11 +13,23 @@ body {
   background-image: linear-gradient(rgb(0, 55, 255),rgb(1, 121, 27));
   background-attachment: fixed;
   height: 2900px;
+  overflow-x: hidden;
 }
 
 .fullwidth{
   width: 100%;
   text-align: center;
+}
+
+.arrow {
+  float: left; 
+  margin-top: 3%;
+  opacity: 0.5;
+}
+
+.arrow:hover{
+  opacity: 1;
+  transition: opacity 0.3s;
 }
 
 .nicegrad {
@@ -163,10 +175,20 @@ nav {
   background-color: rgba(0,0,0,0.7);
 }
 
+.gamename{
+  font-size: 25px; 
+  color: white; 
+}
+
+.gamedes{
+  font-size: 15px; 
+  color: white; 
+}
+
 .select-carousel{
   text-align: center;
   width: 100%;
-  margin-left: 20%;
+  margin-left: 35%;
 }
 
 .main-image{
