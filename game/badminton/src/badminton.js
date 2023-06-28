@@ -98,6 +98,110 @@ function clear(){
 }
 
 
+// function hit{
+
+// }
+
+// function serve{
+    
+// }
+
+let player = document.getElementById('player');
+let player2 = document.getElementById('player2');
+let player3 = document.getElementById('player3');
+let player4 = document.getElementById('player4');
+
+let hit = new Audio("../assets/sfx/hit.mp4");
+
+let court = document.getElementById('court');
+let ball = document.getElementById('ball');
+let courtside = document.getElementById('courtside');
+
+let playerh = player.offsetHeight;
+let ballwidth = ball.offsetWidth;
+
+let cwidth = court.offsetWidth;
+let cstart = court.offsetLeft;
+let cheight = court.offsetHeight;
+
+
+let sheight = courtside.offsetHeight;
+let swidth = courtside.offsetWidth;
+let sstart = cheight;
+
+console.log(sstart);
+
+player.style.left = '100px';
+
+courtside.style.top = cheight+'px';
+
+let player1x = 100;
+let player1y = 50;
+let p1angle = -90;
+let p2angle = 90;
+let hittime = null;
+let hitside = "";
+
+let player2x = 0;
+let player2y = 75;
+
+let ballx = 10;
+let bally = 20;
+let ballz = 50;
+
+let bdx = 0.15;
+let bdy = 0.05;
+let bdz = -0.05;
+
+let baz = 1;
+
+const sleep = ms => new Promise(res => setTimeout(res, ms));
+
+function render(){
+    // top view
+    player.style.left = (player1x/100*cwidth-player.offsetWidth/2+cstart)+'px';
+    player.style.top = (player1y/100*cheight-player.offsetHeight/2)+'px'
+
+    player2.style.left = (player2x/100*cwidth-player.offsetWidth/2+cstart)+'px';
+    player2.style.top = (player2y/100*cheight-player.offsetHeight/2)+'px'
+    
+    ball.style.left = (ballx/100*cwidth-player.offsetWidth/2+cstart)+'px';
+    ball.style.top = (bally/100*cheight-player.offsetHeight/2)+'px'
+
+
+    // for the side view
+
+    player3.style.left = (player1x/100*cwidth-player.offsetWidth/2+cstart)+'px';
+    player3.style.width = 7*player1y/100+"%";
+    player3.style.top = (0.5*sheight-player.offsetHeight/2+sstart+50)+'px'
+
+    
+    player4.style.left = (player2x/100*cwidth-player.offsetWidth/2+cstart+50)+'px';
+    player4.style.top = (0.5*sheight-player.offsetHeight/2+sstart)+'px'
+    player4.style.width = 7*player2y/100+"%";
+
+
+    ball2.style.left = (ballx/100*cwidth-player.offsetWidth/2+cstart)+'px';
+    ball2.style.top = (ballz/100*cheight-player.offsetHeight/2+cstart)+'px'
+    ball2.style.width = 2*bally/100+"%";
+}
+
+
+(async () => {
+    while (true){
+        
+        // velocity affecting position
+        ballx += bdx;
+        bally += bdy;
+        ballz += bdz;
+
+        render();
+
+        await sleep();
+    }
+})();
+
+
 game();
 
 (async () => {
