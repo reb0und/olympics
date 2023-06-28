@@ -17,7 +17,7 @@
       <ul class="nav-items" id="nav">
         <li><a id='header1' class="nav-el" href=""><img src="https://freepngimg.com/thumb/categories/2709.png" width="50px"></a></li>
         <li><a id='header2' class="nav-el" href=""><img src="https://cdn.pixabay.com/photo/2016/05/31/23/21/badminton-1428046_1280.jpg" width="75px"></a></li>
-        <li><a id='header3' class="nav-el" href="https://skparab1.github.io/#projects">link</a></li>
+        <li><a id='header3' class="nav-el" href="">link</a></li>
       </ul> 
     </nav>
     <div class="fullwidth">
@@ -33,11 +33,28 @@
     </div>
 
     <div class="fullwidth" style="margin-top: 50px;">
-      <img src="https://png.pngtree.com/png-vector/20230407/ourmid/pngtree-badminton-line-icon-vector-png-image_6693236.png" height="170px">
+
+      <h2 id='head' style="font-size: 50px; color: black; margin-top: 40px; margin-bottom: 10px;">Select a game</h2>
+     
+      <div class="select-carousel">
+        <img class="arrow" src="../assets/images/arrow-left.png" width="5%" onclick="movecarousel('left')">
+        <div class="main-image">
+          <img id="m-img" style="object-fit: cover;" src="../assets/images/tennis.png" width="170px">
+        </div>
+        <img class="arrow" src="../assets/images/arrow-right.png" width="5%" onclick="movecarousel('right')">
+      </div>
+     
+      <!-- <img src="https://png.pngtree.com/png-vector/20230407/ourmid/pngtree-badminton-line-icon-vector-png-image_6693236.png" height="170px">
       <img src="../assets/images/tennis.png" height="170px">
       <img src="../assets/images/table.png" height="177px">
       <img src="../assets/images/soccer.png" style="padding-left: 50px;" height="170px">
-      <img src="../assets/images/boxing.png" style="padding-left: 50px;" height="170px">
+      <img src="../assets/images/boxing.png" style="padding-left: 50px;" height="170px"> -->
+    </div>
+
+    <div class="fullwidth" style="margin-top: 190px;">
+      <h3 id="gamename" class='gamename'>Select a game</h3>
+      <h4 id="gamedes" class='gamedes'>This game is about playing</h4>
+      <button id="gameselect" class="gamebutton">Play</button>
     </div>
 
     <div id="backdrop" class="backdrop">
@@ -64,6 +81,7 @@
 
     </div>
 
+    <script src="../src/html-controller.js"></script>
     <script src="../src/index.js"></script>
 
   </body>
