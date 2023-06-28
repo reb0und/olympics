@@ -20,8 +20,21 @@ class RoomClient:
         }))
         return id
 
-    def get_room(self, room_id: str) -> str:
-        return self.client.get(room_id)
+    def get_room(self, room_id: str) -> dict:
+        return json.loads(self.client.get(room_id))
 
     def update_host(self, room_id: str, host: UUID) -> None:
-        self.client.set(room_id, host)
+        room = self.get_room(room_id)
+        self.client.set(room_id, json.dumps({
+            "host_id": str(host),
+            "locked": room["locked"],
+            "players": room["players"]
+        }))
+
+    def update_lock(self, room_id: str, lock: bool) -> None:
+        room = self.get_room(room_id)
+        self.client.set(room_id, json.dumps({
+            "host_id": room["host_id"],
+            "locked": lock,
+            "players": room["players"]
+        }))

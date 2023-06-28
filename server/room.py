@@ -34,9 +34,8 @@ class Room:
             return True
         else:
             return False
-        
-    # @TODO: if the first input is the host, kick second player 
-           
+   
+
 # @TODO: Check if code already exists
 # Returns randomly generated alphanumeric string of length 6
 def generate_id() -> str:

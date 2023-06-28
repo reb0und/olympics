@@ -1,90 +1,158 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset='utf-8'>
-    <meta name='og:viewport' content='width=device-width,initial-scale=1'>
-    <meta name="og:description" content="Skparab1">
-    <title>Olympics</title>
-    <link rel="stylesheet" href="../static/css/index.css">
-    <link rel="stylesheet" href="../static/css/styles.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="icon" type="image/x-icon" href="pacman-favicon.png">
-    <link href="https://fonts.googleapis.com/css2?family=Finlandica&display=swap" rel="stylesheet"> 
-  </head>
-  <body>
-    <nav id="nav1">
-      <ul class="nav-items" id="nav">
-        <li><a id='header1' class="nav-el" href=""><img src="https://freepngimg.com/thumb/categories/2709.png" width="50px"></a></li>
-        <li><a id='header2' class="nav-el" href=""><img src="https://cdn.pixabay.com/photo/2016/05/31/23/21/badminton-1428046_1280.jpg" width="75px"></a></li>
-        <li><a id='header3' class="nav-el" href="">link</a></li>
-      </ul> 
-    </nav>
-    <div class="fullwidth">
-        <h1 class='chroma' id='head' style="font-size: 50px; color: black; margin-top: 10px;">Welcome to olympics.io!</h1>
-<!-- 
+	<head>
+		<meta charset="utf-8" />
+		<meta name="og:viewport" content="width=device-width,initial-scale=1" />
+		<meta name="og:description" content="Skparab1" />
+		<title>Olympics</title>
+		<link rel="stylesheet" href="../static/css/index.css" />
+		<link rel="stylesheet" href="../static/css/styles.css" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link rel="icon" type="image/x-icon" href="pacman-favicon.png" />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Finlandica&display=swap"
+			rel="stylesheet"
+		/>
+	</head>
+	<body>
+		<nav id="nav1">
+			<ul class="nav-items" id="nav">
+				<li>
+					<a id="header1" class="nav-el" href=""
+						><img
+							src="https://freepngimg.com/thumb/categories/2709.png"
+							width="50px"
+					/></a>
+				</li>
+				<li>
+					<a id="header2" class="nav-el" href=""
+						><img
+							src="https://cdn.pixabay.com/photo/2016/05/31/23/21/badminton-1428046_1280.jpg"
+							width="75px"
+					/></a>
+				</li>
+				<li>
+					<a
+						id="header3"
+						class="nav-el"
+						href="https://skparab1.github.io/#projects"
+						>link</a
+					>
+				</li>
+			</ul>
+		</nav>
+		<div class="fullwidth">
+			<h1
+				class="chroma"
+				id="head"
+				style="font-size: 50px; color: black; margin-top: 10px"
+			>
+				Welcome to olympics.io!
+			</h1>
+			<!-- 
         <h3 class="explainer">
           Olympics.io is a game that has multiple olympic games. Olympics.io is a game that has multiple olympic games. Olympics.io is a game that has multiple olympic games. Olympics.io is a game that has multiple olympic games. Olympics.io is a game that has multiple olympic games. Olympics.io is a game that has multiple olympic games. Olympics.io is a game that has multiple olympic games. Olympics.io is a game that has multiple olympic games. Olympics.io is a game that has multiple olympic games. Olympics.io is a game that has multiple olympic games. Olympics.io is a game that has multiple olympic games. Olympics.io is a game that has multiple olympic games. Olympics.io is a game that has multiple olympic games. Olympics.io is a game that has multiple olympic games. Olympics.io is a game that has multiple olympic games. Olympics.io is a game that has multiple olympic games. Olympics.io is a game that has multiple olympic games. Olympics.io is a game that has multiple olympic games. 
         </h3> -->
 
-        <button class="gamebutton" onclick="document.getElementById('backdrop').style.display='block'; document.getElementById('askdialogue').style.display='block';">Join Game</button>
-        <button class="gamebutton" onclick="document.getElementById('backdrop').style.display='block'; document.getElementById('createdialogue').style.display='block';">Create New Game</button>
+			<button
+				class="gamebutton"
+				onclick="document.getElementById('backdrop').style.display='block'; document.getElementById('askdialogue').style.display='block';"
+			>
+				Join Game
+			</button>
+			<button
+				class="gamebutton"
+				onclick="document.getElementById('backdrop').style.display='block'; document.getElementById('createdialogue').style.display='block';"
+			>
+				Create New Game
+			</button>
+		</div>
 
-    </div>
+		<div class="fullwidth" style="margin-top: 50px">
+			<h2
+				id="head"
+				style="
+					font-size: 50px;
+					color: black;
+					margin-top: 40px;
+					margin-bottom: 10px;
+				"
+			>
+				Select a game
+			</h2>
 
-    <div class="fullwidth" style="margin-top: 50px;">
+			<div class="select-carousel">
+				<img
+					class="arrow"
+					src="../assets/images/arrow-left.png"
+					width="5%"
+					onclick="movecarousel('left')"
+				/>
+				<div class="main-image">
+					<img
+						id="m-img"
+						style="object-fit: cover"
+						src="../assets/images/tennis.png"
+						width="170px"
+					/>
+				</div>
+				<img
+					class="arrow"
+					src="../assets/images/arrow-right.png"
+					width="5%"
+					onclick="movecarousel('right')"
+				/>
+			</div>
 
-      <h2 id='head' style="font-size: 50px; color: black; margin-top: 40px; margin-bottom: 10px;">Select a game</h2>
-     
-      <div class="select-carousel">
-        <img class="arrow" src="../assets/images/arrow-left.png" width="5%" onclick="movecarousel('left')">
-        <div class="main-image">
-          <img id="m-img" style="object-fit: cover;" src="../assets/images/tennis.png" width="170px">
-        </div>
-        <img class="arrow" src="../assets/images/arrow-right.png" width="5%" onclick="movecarousel('right')">
-      </div>
-     
-      <!-- <img src="https://png.pngtree.com/png-vector/20230407/ourmid/pngtree-badminton-line-icon-vector-png-image_6693236.png" height="170px">
+			<!-- <img src="https://png.pngtree.com/png-vector/20230407/ourmid/pngtree-badminton-line-icon-vector-png-image_6693236.png" height="170px">
       <img src="../assets/images/tennis.png" height="170px">
       <img src="../assets/images/table.png" height="177px">
       <img src="../assets/images/soccer.png" style="padding-left: 50px;" height="170px">
       <img src="../assets/images/boxing.png" style="padding-left: 50px;" height="170px"> -->
-    </div>
+		</div>
 
-    <div class="fullwidth" style="margin-top: 190px;">
-      <h3 id="gamename" class='gamename'>Select a game</h3>
-      <h4 id="gamedes" class='gamedes'>This game is about playing</h4>
-      
+		<div class="fullwidth" style="margin-top: 190px">
+			<h3 id="gamename" class="gamename">Select a game</h3>
+			<h4 id="gamedes" class="gamedes">This game is about playing</h4>
+			<button id="gameselect" class="gamebutton">Play</button>
+		</div>
 
-      <button id="gameselect" class="gamebutton">Play</button>
-    </div>
+		<div id="backdrop" class="backdrop">
+			<div id="askdialogue" class="askdialogue">
+				<div>
+					<h1>Join Game</h1>
+					<h2 style="margin-bottom: 10px">Enter game code</h2>
+					<input type="text" class="enter" name="" id="" />
 
-    <div id="backdrop" class="backdrop">
-    <div id="askdialogue" class="askdialogue">
-      <div>
-        <h1>Join Game</h1>
-        <h2 style="margin-bottom: 10px;">Enter game code</h2>
-        <input type="text" class="enter" name="" id="">
-  
-        <button class="enter">Join</button>
-      </div>
-      <button style="margin-top: 10px; margin-bottom: 20px;" onclick="document.getElementById('backdrop').style.display='none'; document.getElementById('askdialogue').style.display='none';" class="enter">Cancel</button>
-    </div>    
+					<button class="enter">Join</button>
+				</div>
+				<button
+					style="margin-top: 10px; margin-bottom: 20px"
+					onclick="document.getElementById('backdrop').style.display='none'; document.getElementById('askdialogue').style.display='none';"
+					class="enter"
+				>
+					Cancel
+				</button>
+			</div>
 
-    <div id="createdialogue" class="askdialogue">
-      <div>
-        <h1>Create New Game</h1>
-        <h2 style="margin-bottom: 10px;" id="gcdisp">Your game code is: </h2>
+			<div id="createdialogue" class="askdialogue">
+				<div>
+					<h1>Create New Game</h1>
+					<h2 style="margin-bottom: 10px" id="gcdisp">Your game code is:</h2>
 
-        <button class="enter">Join</button>
-      </div>
-      <button style="margin-top: 10px; margin-bottom: 20px;" onclick="document.getElementById('backdrop').style.display='none'; document.getElementById('askdialogue').style.display='none';" class="enter">Cancel</button>
-    </div>    
+					<button class="enter">Join</button>
+				</div>
+				<button
+					style="margin-top: 10px; margin-bottom: 20px"
+					onclick="document.getElementById('backdrop').style.display='none'; document.getElementById('askdialogue').style.display='none';"
+					class="enter"
+				>
+					Cancel
+				</button>
+			</div>
+		</div>
 
-    </div>
-
-    <script src="../src/html-controller.js"></script>
-    <script src="../src/index.js"></script>
-
-  </body>
+		<script src="../src/index.js"></script>
+	</body>
 </html>
