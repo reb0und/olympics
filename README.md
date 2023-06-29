@@ -22,6 +22,8 @@ Sessions are another essential part of Olmypics. Each session is attributed with
 
 #### Boxing
 
+#### Soccer
+
 ### Requirements
 
 - Python 3.9+
