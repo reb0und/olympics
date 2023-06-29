@@ -20,6 +20,8 @@ Sessions are another essential part of Olmypics. Each session is attributed with
 
 #### Table Tennis
 
+The Tennis game is played by both positioning the player to align with the ball, as well as pressing the space bar to hit the ball. The player, court and ball are displayed using 2 views, one top view and one side view. The top view focuses on displaying the position of the ball and the players, allowing the player to view the court directly from above. In addition, the game displays a side view, focused on both displaying the height of the ball, as well as the distance from the “camera” on the side of the net to the ball, which it does by increasing the size of the ball as it moves closer to the “camera”. Players can press Up and Down arrows to move the player up and down, and the player will turn in the direction the move. In addition the player can press the space bar to hit the ball. The ball will be deflected based on the direction the player is faces, as well as the timing of the space press. In addition the game ends when either player hits the ball out of bounds, or into the net. In addition, the player has energy, which gets depleted based on the force applied to the shot, as well as how much the player moves. The energy is also replenished constantly. In addition, there are sound effects for hitting the ball.
+
 #### Boxing
 
 #### Soccer
