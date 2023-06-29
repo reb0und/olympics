@@ -82,7 +82,7 @@ async function newimg(){
         tmg.src = "../assets/images/boxing.png";
         gamename.textContent = "Boxing";
         gamedes.textContent = "Play 1v1 Boxing!";
-        gameselect.onclick = function() {window.location = rootURL+"/room/boxing";};
+        gameselect.onclick = function() {window.location = "https://snap.berkeley.edu/snap/snap.html#present:Username=stevenchenhanwen&ProjectName=boxing%20game"};
     }
 }
 
