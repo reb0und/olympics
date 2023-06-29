@@ -26,6 +26,8 @@ The Tennis game is played by both positioning the player to align with the ball,
 
 #### Soccer
 
+Soccer is a penalty-shooting game in which the user presses the keys qweasd to determine where the soccer ball will be kicked. Then a function block() is called to make the goalie randomly determine a position to block. When the soccer ball and goalie position is the same the goalie blocks the ball, when the two are not the same the ball goes into the goal and it's a goal.
+
 ### Requirements
 
 - Python 3.9+
