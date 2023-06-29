@@ -185,7 +185,7 @@ let cwidth = court.offsetWidth;
 let cstart = court.offsetLeft;
 let cheight = court.offsetHeight;
 
-
+let elapsedtimeme = 0;
 
 
 player.style.left = '100px';
@@ -378,6 +378,8 @@ function render(){
         await sleep();
     }
 
+    elapsedtimeme = 0;
+
     if (serve == 'W'){
         smashserve(1);
     }
@@ -392,6 +394,17 @@ function render(){
         ballx += bdx;
         bally += bdy;
         ballz += bdz;
+
+        elapsedtimeme += 1;
+
+        if (ballx < 50 && bdx < 0){ // moving towards computer
+            if (player2y+10 < bally){
+                player2y += 1;
+            }
+            if (player2y+10 > bally){
+                player2y -= 1;
+            }
+        }
 
         if (Math.abs(vj) < 0.05 && Math.abs(jumpy) > 0){
 
@@ -446,12 +459,13 @@ function render(){
 
             // check if a move was made
 
-            if (lasthit == ""){
+            if (lasthit == "" && elapsedtimeme > 10){
                 notif("you lost");
-
+                alert("You lost")
 
             } else {
                 //alert("Hit type "+lasthit);
+                elapsedtimeme = 0;
 
                 hit.currentTime = 2.2;
                 hit.play();
@@ -477,33 +491,34 @@ function render(){
         }
 
         if (overlap(ball, player2)){
-            // alert("HIT");
-
             // check if a move was made
 
-            if (lasthitother == ""){
+            if (lasthitother == "" && elapsedtimeme > 10){
                 notif("other player lost");
-
+                alert("Computer lost")
 
             } else {
+                // alert("HIT");
+
                 //alert("Hit type "+lasthit);
+                elapsedtimeme = 0;
 
                 hit.currentTime = 2.2;
                 hit.play();
 
-                if (lasthit == 'A'){
+                if (lasthitother == 'A'){
                     smash(-1);
                 }
-                if (lasthit == 'S'){
+                if (lasthitother == 'S'){
                     drive(-1);
                 }
-                if (lasthit == 'D'){
+                if (lasthitother == 'D'){
                     lift(-1);
                 }
-                if (lasthit == 'F'){
+                if (lasthitother == 'F'){
                     drop(-1);
                 }
-                if (lasthit == 'G'){
+                if (lasthitother == 'G'){
                     clear(-1);
                 }
 
@@ -511,6 +526,8 @@ function render(){
             }
         }
 
+
+        
 
         if (Math.abs(playerdx) < 0.3){
             playerdx = 0;
@@ -608,9 +625,12 @@ game();
 
       let movearr = ['A','S','D','F','G'];
 
+      let autook = ['S','D','G'];
+
       if (movearr.indexOf(actkey) != -1){
         lasthit = actkey;
-        lasthitother = actkey;
+
+        lasthitother = autook[Math.floor(Math.random()*3)];
       }
 
     //   if (actkey == 'W' || actkey == 'X'){
