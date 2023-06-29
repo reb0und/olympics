@@ -2,7 +2,7 @@
 
 ## Description
 
-Olympics (olympics.io) is our final project for CS10 (Berkeley Joy of Computing). We created a set of minigames intended to be hosted on a multiplayer website.
+Olympics (olympics.io) is our final project for Berkeley Joy of Computing (CS10 High School program). We created a set of minigames intended to be hosted on a multiplayer website.
 
 ### Rooms
 
