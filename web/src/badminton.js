@@ -322,7 +322,7 @@ function zeroize_negative(i){
     }
 }
 
-
+// @DOMINIC if you want to call this with the arguments every time it receives data
 function receivemovement(playerx, playery, stroke){
     player2x = playerx;
     player2y = playery;
@@ -330,6 +330,13 @@ function receivemovement(playerx, playery, stroke){
     let movearr = ['A','S','D','F','G'];
 
     lasthitother = movearr[stroke];
+}
+
+// @DOMINIC call this to get the data you want to send
+function getsendmovement(){
+    let movearr = ['A','S','D','F','G'];
+
+    return [player1x, player1y, movearr.indexOf(lasthit)];
 }
 
 function render(){
