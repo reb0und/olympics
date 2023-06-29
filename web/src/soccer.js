@@ -69,8 +69,10 @@ function block(key) {
   if (key === randomCharacter) {
     setTimeout(() => {
       if (confirm("Goalie blocked your shot! Please try again.")) {
-        location.reload();
+        soccerBallX = 50;
+        soccerBallY = 90;
         render();
+        //location.reload();
       }
     }, 200);
   } else {
@@ -78,8 +80,10 @@ function block(key) {
       if (confirm("GOAL! Do you want to play again?")) {
         score++;
         updateScore();
-        location.reload();
+        soccerBallX = 50;
+        soccerBallY = 90;
         render();
+        //location.reload();
       }
     }, 200);
   }
