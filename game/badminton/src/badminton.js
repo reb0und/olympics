@@ -9,13 +9,21 @@ let player2Sets = 0;
 
 // let player3 = new Player("idk",10,1,1);
 
+let hit = new Audio("../assets/sfx/hit.mp4");
+let hit2 = new Audio("../assets/sfx/hit.mp4");
+
 let playerarr = [];
+
+let notif1 = document.getElementById('notif');
+
+let scoredisp = document.getElementById('score');
+
+scoredisp.textContent = "You: 0 • Opponent: 0";
 
 let response = "";
 const sleep = ms => new Promise(res => setTimeout(res, ms));
 
 async function gamesim(){
-    let player1
 
     while (player1Sets !== 2 && player2Sets !== 2) {
         if (((player1Score - player2Score) > 1) && (player1Score > 20)) {
@@ -41,13 +49,13 @@ async function gamesim(){
 }
 
 async function game(){
-    document.write("Press w or x"); 
+    //document.write("Press w or x"); 
     
     while (response == ""){
         await sleep();
     }
 
-    document.write('selected serve '+response);
+    //document.write('selected serve '+response);
 
 
     while(player1.energy >= 0 && player2.energy >= 0){
@@ -59,44 +67,63 @@ async function game(){
     return 1
 }
 
-function serve() {
-// return location
-    if (actkey == 'ArrowLeft'){
-        player1y -= 3;
-        player.style.transform = "rotate(-50deg)";
-        p1angle = -50;
-    }
-    if (actkey == 'ArrowRight'){
-        player1y += 3;
-        player.style.transform = "rotate(230deg)";
-        p1angle = 230;
-    }
-    if (actkey == 'ArrowUp'){
-        player1y -= 3;
-        player.style.transform = "rotate(-50deg)";
-        p1angle = -50;
-    }
+// function serve() {
+// // return location
+//     if (actkey == 'ArrowLeft'){
+//         player1y -= 3;
+//         player.style.transform = "rotate(-50deg)";
+//         p1angle = -50;
+//     }
+//     if (actkey == 'ArrowRight'){
+//         player1y += 3;
+//         player.style.transform = "rotate(230deg)";
+//         p1angle = 230;
+//     }
+//     if (actkey == 'ArrowUp'){
+//         player1y -= 3;
+//         player.style.transform = "rotate(-50deg)";
+//         p1angle = -50;
+//     }
 
+// }
+
+function jump(){
+    jumpy = 0;
+    vj = -4;
 }
 
-function smash(){
 
+// each of these types of shots will set the velocities to certain things
+function smash(s){
+    jump();
+    bdx = -0.25*s;
+    bdy = 0.15;
+    notif_long("Smash");
 }
 
-function drive(){
-
+function drive(s){
+    bdx = -0.25*s;
+    bdy = 0.1;
+    notif("Drive");
 }
 
-function lift(){
-
+function lift(s){
+    bdx = -0.25*s;
+    bdy = -0.1;
+    notif("Lift");
 }
 
-function drop(){
 
+function drop(s){
+    bdx = -0.25*s;
+    bdy = 0.05;
+    notif("Drop");
 }
 
-function clear(){
-
+function clear(s){
+    bdx = -0.05*s;
+    bdy = -0.25;
+    notif("Clear");
 }
 
 
@@ -110,14 +137,14 @@ function clear(){
 
 let player = document.getElementById('player');
 let player2 = document.getElementById('player2');
-let player3 = document.getElementById('player3');
-let player4 = document.getElementById('player4');
 
-let hit = new Audio("../assets/sfx/hit.mp4");
+let lasthit = "";
+let lasthitother = "";
+
+let serve = "";
 
 let court = document.getElementById('court');
 let ball = document.getElementById('ball');
-let courtside = document.getElementById('courtside');
 
 let playerh = player.offsetHeight;
 let ballwidth = ball.offsetWidth;
@@ -127,15 +154,10 @@ let cstart = court.offsetLeft;
 let cheight = court.offsetHeight;
 
 
-let sheight = courtside.offsetHeight;
-let swidth = courtside.offsetWidth;
-let sstart = cheight;
 
-console.log(sstart);
 
 player.style.left = '100px';
 
-courtside.style.top = cheight+'px';
 
 let player1x = 80;
 let player1y = 50;
@@ -149,6 +171,9 @@ let hitside = "";
 
 let player2x = 10;
 let player2y = 75;
+
+let jumpy = 0;
+let vj = 0;
 
 let ballx = 10;
 let bally = 100;
@@ -167,13 +192,110 @@ function overlap(object1, object2){
     // basically yk the corners
     // if the corners are contained in others
 
-    let o1corners = [obj] 
+    let o1corners = [[object1.offsetLeft, object1.offsetTop],[object1.offsetLeft+object1.offsetWidth, object1.offsetTop], [object1.offsetLeft, object1.offsetTop+object1.offsetHeight], [object1.offsetLeft+object1.offsetWidth, object1.offsetTop+object1.offsetHeight]]; 
+   
+    let o2 = [object2.offsetLeft, object2.offsetLeft+object2.offsetWidth, object2.offsetTop, object2.offsetTop+object2.offsetHeight]; 
+
+    let i = 0;
+
+    while (i < 4){
+        let mpx = o1corners[i][0];
+        let mpy = o1corners[i][1];
+        if (mpx > o2[0] && mpx < o2[1] && mpy > o2[2] && mpy < o2[3]){
+            return true;
+        }
+        i += 1;
+    }
+
+    return false
+}
+
+function overlap_strict(object1, object2){
+
+    let o1center = [object1.offsetLeft+object1.offsetWidth/2, object1.offsetTop+object1.offsetHeight/2];
+
+    let o2center = [object2.offsetLeft+object2.offsetWidth/2, object2.offsetTop+object2.offsetHeight/2];
+
+    let dist = Math.sqrt((o1center[0]-o2center[0])*(o1center[0]-o2center[0])+(o1center[1]-o2center[1])*(o1center[1]-o2center[1]));
+
+    return dist < window.innerWidth/100;
+}
+
+
+function overlap_slight(object1, object2){
+
+    // basically it is within the line of the x
+
+    let okx = Math.abs((object1.offsetLeft+object1.offsetWidth/2)-(object2.offsetLeft+object2.offsetWidth/2)) < 10;
+
+    let oky = Math.abs((object1.offsetTop+object1.offsetHeight/2)-(object2.offsetTop+object2.offsetHeight/2)) < 33;
+
+    //and decently close for the y too
+
+    return okx && oky;
+}
+
+
+async function notif(txt){
+    let i = 100;
+    let opac = 0;
+
+    notif1.textContent = txt;
+
+    notif1.style.left = (window.innerWidth/2-notif.offsetWidth)+"px";
+
+    while (i > -100){
+
+        notif1.style.opacity = opac/100;
+        notif1.style.marginTop = i+"px";
+
+        i -= 1;
+        opac += 1
+        await sleep();
+    }
+}
+
+
+
+async function notif_long(txt){
+    let i = 100;
+    let opac = 0;
+
+    notif1.textContent = txt;
+
+    while (i > -200){
+
+        notif1.style.opacity = opac/100;
+
+        if (i > 0){
+            notif1.style.marginTop = i+"px";
+        } else if (i < -100){
+            notif1.style.marginTop = (i+100)+"px";
+        }
+
+        i -= 1;
+        opac += 1
+        await sleep();
+    }
+}
+
+function zeroize_negative(i){
+    if (i < 0){
+        return i;
+    } else {
+        return 0;
+    }
+}
+
+
+function receivemovement(playerx, playery, stroke){
+
 }
 
 function render(){
     // top view
     player.style.left = (player1x/100*cwidth-player.offsetWidth/2+cstart)+'px';
-    player.style.top = (player1y/100*cheight-player.offsetHeight/2)+'px'
+    player.style.top = ((player1y+zeroize_negative(jumpy))/100*cheight-player.offsetHeight/2)+'px'
 
     player2.style.left = (player2x/100*cwidth-player.offsetWidth/2+cstart)+'px';
     player2.style.top = (player2y/100*cheight-player.offsetHeight/2)+'px'
@@ -184,14 +306,14 @@ function render(){
 
     // for the side view
 
-    player3.style.left = (player1x/100*cwidth-player.offsetWidth/2+cstart)+'px';
-    player3.style.width = 7*player1y/100+"%";
-    player3.style.top = (0.5*sheight-player.offsetHeight/2+sstart+50)+'px'
+    // player3.style.left = (player1x/100*cwidth-player.offsetWidth/2+cstart)+'px';
+    // player3.style.width = 7*player1y/100+"%";
+    // player3.style.top = (0.5*sheight-player.offsetHeight/2+sstart+50)+'px'
 
     
-    player4.style.left = (player2x/100*cwidth-player.offsetWidth/2+cstart+50)+'px';
-    player4.style.top = (0.5*sheight-player.offsetHeight/2+sstart)+'px'
-    player4.style.width = 7*player2y/100+"%";
+    // player4.style.left = (player2x/100*cwidth-player.offsetWidth/2+cstart+50)+'px';
+    // player4.style.top = (0.5*sheight-player.offsetHeight/2+sstart)+'px'
+    // player4.style.width = 7*player2y/100+"%";
 
 
     ball2.style.left = (ballx/100*cwidth-player.offsetWidth/2+cstart)+'px';
@@ -201,6 +323,13 @@ function render(){
 
 
 (async () => {
+
+    notif_long("Press W or X to serve")
+    while (serve != 0){
+
+        await sleep();
+    }
+
     while (true){
         
         // velocity affecting position
@@ -208,8 +337,24 @@ function render(){
         bally += bdy;
         ballz += bdz;
 
-        // two vectors
-        // find z's projection on y
+        if (Math.abs(vj) < 0.05 && Math.abs(jumpy) > 0){
+
+        } else {
+            jumpy += vj;
+        }
+
+        if (hit.currentTime > 3){
+            hit.pause();
+        }
+
+        if (hit2.currentTime > 23.5){
+            hit2.pause();
+        }
+
+
+        if (vj < 0.05){
+            vj += 0.5;
+        }
 
         bdy += bay/2000;
 
@@ -229,6 +374,73 @@ function render(){
         if (playerdx < 0){
             playerdx += 0.1;
         }
+
+        if (overlap_slight(ball, player)){
+            // alert("HIT");
+
+            // check if a move was made
+
+            if (lasthit == ""){
+                notif("you lost");
+
+
+            } else {
+                //alert("Hit type "+lasthit);
+
+                hit.currentTime = 2.2;
+                hit.play();
+
+                if (lasthit == 'A'){
+                    smash(1);
+                }
+                if (lasthit == 'S'){
+                    drive(1);
+                }
+                if (lasthit == 'D'){
+                    lift(1);
+                }
+                if (lasthit == 'F'){
+                    drop(1);
+                }
+                if (lasthit == 'G'){
+                    clear(1);
+                }
+            }
+        }
+
+        if (overlap_slight(ball, player2)){
+            // alert("HIT");
+
+            // check if a move was made
+
+            if (lasthitother == ""){
+                notif("other player lost");
+
+
+            } else {
+                //alert("Hit type "+lasthit);
+
+                hit.currentTime = 2.2;
+                hit.play();
+
+                if (lasthit == 'A'){
+                    smashother(-1);
+                }
+                if (lasthit == 'S'){
+                    driveother(-1);
+                }
+                if (lasthit == 'D'){
+                    liftother(-1);
+                }
+                if (lasthit == 'F'){
+                    dropother(-1);
+                }
+                if (lasthit == 'G'){
+                    clearother(-1);
+                }
+            }
+        }
+
 
         if (Math.abs(playerdx) < 0.3){
             playerdx = 0;
@@ -259,7 +471,7 @@ function render(){
 
 
         if (player1x < 50){
-            alert("Opponent point");
+            notif("Opponent point");
             playerdx = Math.abs(playerdx);
         }
 
@@ -298,19 +510,41 @@ game();
 
       if (actkey == 'ArrowUp'){
         playerdx -= 2;
+        hit2.currentTime = 23;
+        hit2.play();
       }
 
       if (actkey == 'ArrowDown'){
         playerdx += 2;
+        hit2.currentTime = 23;
+        hit2.play();
       }
 
       if (actkey == 'ArrowLeft'){
         playerdy += 2;
+        hit2.currentTime = 23;
+        hit2.play();
       }
 
       if (actkey == 'ArrowRight'){
         playerdy -= 2;
+        hit2.currentTime = 23;
+        hit2.play();
       }
+
+      if (actkey == 'Space'){
+        jump();
+      }
+
+      let movearr = ['A','S','D','F','G'];
+
+      if (movearr.indexOf(actkey) != -1){
+        lasthit = actkey;
+      }
+
+    //   if (actkey == 'W' || actkey == 'X'){
+    //     serve = actkey;
+    //   }
     
     }, true);
 
