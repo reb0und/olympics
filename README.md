@@ -38,3 +38,11 @@ In order to install dependencies, execute the following command:
 ## Setbacks
 
 Due to the nature of the project, we were unable to implement all of the features we wanted to. This included seeing multiplayer features in production. We were able to implement the multiplayer features in a local environment, but we were unable to deploy it to a server. We also wanted to implement more games, but we were unable to do so again due to time constraints.
+
+## Authors
+
+- [Praval Chaudhary](https://github.com/Chaudhary-Prval888)
+- [Steven Chen](https://github.com/stevenchenhanwen)
+- [Shubham Parab](https://github.com/Skparab1)
+- [Veeral Shroff](https://github.com/veerals)
+- [Myself](https://github.com/reb0und)
