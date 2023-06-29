@@ -53,8 +53,6 @@ let bdx = 0.15;
 let bdy = 0.05;
 let bdz = -0.05;
 
-let baz = 1;
-
 const sleep = ms => new Promise(res => setTimeout(res, ms));
 
 function render(){
@@ -101,7 +99,7 @@ function render(){
 
         // acceleration affecting position
         // gravity
-        bdz += baz/3800;
+        bdz += 1/3800;
         
         if (ballx < 50 && bdx < 0){
             if (bally-100*ballwidth/cheight < player2y){
@@ -118,36 +116,30 @@ function render(){
 
         if (Math.abs(ballx-50) < 1 && ballz > 66){
             if (bdx > 0){
-                if(confirm("Computer's ball hit net")){
-                    location.reload();
-                }
+                confirm("Computer's ball hit net")
+                location.reload();
             } else {
-                if(confirm("Your ball hit net")){
+                confirm("Your ball hit net")
                     location.reload();
-                }
             }      
         }
 
         if (bally > 95 && ballz > 65){
             if (bdx > 0){
-                if(confirm("Ball out for computer")){
-                    location.reload();
-                }
+                confirm("Ball out for computer");
+                location.reload();
             } else {
-                if(confirm("Ball out for you")){
-                    location.reload();
-                }
+                confirm("Ball out for you");
+                location.reload();
             }      
         }
         if (bally < 5 && ballz > 65){
             if (bdx > 0){
-                if(confirm("Ball out for computer")){
-                    location.reload();
-                }
+                confirm("Ball out for computer");
+                location.reload();
             } else {
-                if(confirm("Ball out for you")){
-                    location.reload();
-                }
+                confirm("Ball out for you");
+                location.reload();
             }        
         }
 
