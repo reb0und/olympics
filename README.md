@@ -24,6 +24,8 @@ The Tennis game is played by both positioning the player to align with the ball,
 
 #### Boxing
 
+The Boxing game is viewed from an audience point of view. It is played by two players, which player 1 stands on the left and player 2 stands on the right. To win the players have to mash their respective keys: "space" for player 1 and "enter" for player 2. By pressing their respective keys, the players will push their opponents towards the red lines on the near edge of the screen. Player 1 wins by pushing player 2 to the red line on the right. Player 2 wins by pushing player 1 to the red line on the left. The game starts after the "Fight" appears on the screen.
+
 #### Soccer
 
 Soccer is a penalty-shooting game in which the user presses the keys qweasd to determine where the soccer ball will be kicked. Then a function block() is called to make the goalie randomly determine a position to block. When the soccer ball and goalie position is the same the goalie blocks the ball, when the two are not the same the ball goes into the goal and it's a goal.
