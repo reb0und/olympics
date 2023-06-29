@@ -49,7 +49,6 @@ def lock_room() -> Response:
     
 @app.route('/room/badminton', methods = ['GET'])
 def badminton() -> Response:
-    return make_response(render_template('../'), 200)
     if 'Session-Id' not in request.headers:
         return redirect('/', 403)
     elif session_client.get_session(request.headers['Session-Id']):
