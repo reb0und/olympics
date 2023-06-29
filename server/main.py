@@ -49,12 +49,23 @@ def lock_room() -> Response:
     
 @app.route('/room/badminton', methods = ['GET'])
 def badminton() -> Response:
-    if 'Session-Id' not in request.headers:
-        return redirect('/', 403)
-    elif session_client.get_session(request.headers['Session-Id']):
-        return make_response(render_template('../../game/badminton/src/badminton.html'), 200)
-    else:
-        return redirect('/', 301)
+    return render_template('badminton.html')
+
+@app.route('/room/tennis', methods = ['GET'])
+def tennis() -> Response:
+    return render_template('tennis.html')
+
+@app.route('/room/soccer', methods = ['GET'])
+def soccer() -> Response:
+    return render_template('soccer.html')
+
+
+    # if 'Session-Id' not in request.headers:
+    #     return redirect('/', 403)
+    # elif session_client.get_session(request.headers['Session-Id']):
+    #     return make_response(render_template('badminton.html'), 200)
+    # else:
+    #     return redirect('/', 301)
 
 if __name__ == '__main__':
     app.run(debug=True, port=3000)
