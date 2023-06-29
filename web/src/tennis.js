@@ -7,6 +7,7 @@
     
 // }
 
+
 let player = document.getElementById('player');
 let player2 = document.getElementById('player2');
 let player3 = document.getElementById('player3');
@@ -17,6 +18,7 @@ let hit = new Audio("../assets/sfx/hit.mp4");
 let court = document.getElementById('court');
 let ball = document.getElementById('ball');
 let courtside = document.getElementById('courtside');
+let energyel = document.getElementById('energy');
 
 let playerh = player.offsetHeight;
 let ballwidth = ball.offsetWidth;
@@ -29,6 +31,8 @@ let cheight = court.offsetHeight;
 let sheight = courtside.offsetHeight;
 let swidth = courtside.offsetWidth;
 let sstart = cheight;
+
+let energy = 100; // in percentage;
 
 console.log(sstart);
 
@@ -99,6 +103,18 @@ function render(){
         if (hit.currentTime > 1.5){
             hit.pause();
         }
+
+        if (energy < 2){
+            if(confirm("You are out of energy")){
+                location.reload();
+            }
+        }
+
+        if (energy < 100){
+            energy += 0.1;
+        }
+
+        energyel.style.height = (energy/100*70-2)+"%";
 
         // acceleration affecting position
         // gravity
@@ -184,6 +200,8 @@ function render(){
 
                 bdx = -Math.abs(bdx)*(Math.random()+0.5+swingtime);
 
+                energy -= 20;
+
                 bdy = (Math.random()*1)/20;
 
                 if (hitside == 'left'){
@@ -253,12 +271,14 @@ function render(){
         player1y -= 3;
         player.style.transform = "rotate(-50deg)";
         p1angle = -50;
+        energy -= 10;
       }
 
       if (actkey == 'ArrowDown'){
         player1y += 3;
         player.style.transform = "rotate(230deg)";
         p1angle = 230;
+        energy -= 10;
       }
 
       if (actkey == 'Space'){

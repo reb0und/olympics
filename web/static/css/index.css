@@ -10,7 +10,6 @@
 
 body {
   margin: 0;
-  background-image: linear-gradient(rgb(0, 55, 255),rgb(1, 121, 27));
   background-attachment: fixed;
   height: 2900px;
   overflow-x: hidden;
