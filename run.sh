@@ -1,1 +1,1 @@
-python3 server/main.py
+go run main.go
