@@ -17,7 +17,7 @@ async def server(websocket, path):
     clients.add(websocket)
     try:
         while True:
-            await asyncio.sleep(1)
+            await asyncio.sleep(0.01)
     except websockets.exceptions.ConnectionClosed:
         pass
     finally:
@@ -28,7 +28,7 @@ async def send_status_message():
         if clients:
             message = json.dumps(s)
             await asyncio.gather(*(client.send(message) for client in clients))
-        await asyncio.sleep(1)
+        await asyncio.sleep(0.01)
 
 start_server = websockets.serve(server, "localhost", 8765)
 
